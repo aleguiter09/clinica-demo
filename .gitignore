@@ -1,0 +1,4 @@
+.DS_Store
+deploy-payload.json
+mcp-deploy-args.json
+*.log
