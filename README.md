@@ -1,57 +1,78 @@
 # Clínica de Fisioterapia - Demo Landing Page
 
-Generic cold-outreach demo site for a physiotherapy clinic in Chamberí, Madrid.
+React + Vite SPA for a physiotherapy clinic in Chamberí, Madrid.
 
-**Live site:** https://clinica-fisio-demo-rho.vercel.app/
+**Live site:** [https://clinica-fisio-demo-rho.vercel.app/](https://clinica-fisio-demo-rho.vercel.app/)
 
-## Stack
+## Tech Stack
 
-- Static HTML + CSS (no frameworks)
-- Libre Franklin font
-- Teal color scheme
+- **React 18** + **TypeScript**
+- **Vite 6** (static site builder)
+- **CSS Modules** for component styling
+- Centralized design tokens in `src/styles/tokens.css`
 
-## CRO Sections
+## Local Development
 
-1. **Hero** (#inicio)
-   - Google Maps badge: 4.9/5 (+128 opiniones)
-   - Tagline, title, and subtitle from clinic config
-   - WhatsApp CTA with encoded message
-   - Microcopy: "Respuesta habitual en menos de 15 min"
+```bash
+# Install dependencies
+npm install
 
-2. **Services** (#servicios)
-   - 6 treatment types with descriptions
+# Start dev server (http://localhost:5173)
+npm run dev
 
-3. **Pricing** (#tarifas)
-   - Primera consulta: 55€
-   - Sesión de seguimiento: 45€
-   - Bono 5 sesiones: 200€
+# Build for production
+npm run build
 
-4. **Team** (#equipo)
-   - 3 physiotherapists with credentials
-   - Laura Méndez (C-2847), Carlos Ruiz (C-3192), Ana Torres (C-3501)
+# Preview production build
+npm run preview
+```
 
-5. **Reviews** (#opiniones)
-   - Horizontal scrolling review cards
-   - Demo testimonials
+## Editing Content
 
-6. **FAQ** (#faq)
-   - 4 questions using native `<details>/<summary>`
-   - First visit, insurance, what to bring, cancellation
+All copy, contact info, and site data live in **`src/config/clinicConfig.ts`**. Edit this file to update:
 
-7. **Location** (#ubicacion)
-   - Demo address in Madrid
-   - Hours (L–V, Sáb, Dom)
-   - Google Maps iframe embed
-   - "Cómo llegar" button
+- Contact details (phone, WhatsApp, email, address)
+- Team members
+- Services
+- Pricing plans
+- FAQs
+- Reviews
+- Hours and map URL
 
-8. **Mobile Bar**
-   - Fixed bottom bar with "Llamar" and "WhatsApp" CTAs
-   - Both with prefilled WhatsApp message
+Component files are in `src/components/`. Each section has its own `.tsx` file and `.module.css` for styles.
+
+Design tokens (colors, spacing, shadows) are centralized in `src/styles/tokens.css`.
+
+## Structure
+
+- `Header` – sticky nav + phone CTA
+- `Hero` – Google badge, headline, WhatsApp CTA
+- `Trust` – 3-badge trust section
+- `Services` – 6 treatment cards
+- `Pricing` – 3 pricing tiers with WhatsApp CTAs
+- `Team` – 3 physiotherapists with credentials
+- `Reviews` – horizontal scroll cards with arrows + dots (uses `getBoundingClientRect` for precise snap)
+- `Faq` – 4 accordion questions
+- `Location` – contact card, hours, map iframe
+- `Footer` – clinic info + links
+- `MobileCtaBar` – fixed bottom bar (mobile only)
+
+## CRO Details
+
+- Google Maps badge: **4.9/5** (+128 opiniones)
+- Pricing: **55€** primera consulta / **45€** seguimiento / **200€** bono 5 sesiones
+- Neighborhood reference: **Chamberí**
+- WhatsApp CTAs with prefilled message
+- Smooth scroll + `scroll-margin-top` under sticky header
+- Reviews use **desktop viewport pattern** (no `scrollIntoView`, only `getBoundingClientRect`)
+- **NO accent-band** (removed per bug fix)
+
+## Deployment
+
+Vercel auto-deploys from `master` branch. The `vercel.json` rewrites all routes to `/index.html` for SPA routing.
+
+Production branch: **master**
 
 ## Notes
 
-- This is a **demo site** for a generic clinic (not a real brand)
-- All contact info is placeholder (600 000 000)
-- Neighborhood reference: Chamberí
-- WhatsApp links include URL-encoded default message
-- Production branch: `master`
+This is a **demo site** for cold outreach (generic clinic, not a real brand). All contact info is placeholder.

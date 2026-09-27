@@ -1,0 +1,42 @@
+:root {
+  /* Spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --header-h: 60px;
+
+  /* Colors - Brand */
+  --brand: #1F6B6B;
+  --brand-dark: #164F4F;
+  --brand-soft: #E6F2F2;
+  
+  /* Colors - Accent */
+  --accent: #0E7C8B;
+  --accent-hover: #0C6A77;
+  
+  /* Colors - Text */
+  --text-dark: #1C1917;
+  --text-medium: #44403C;
+  --text-muted: #57534E;
+  
+  /* Colors - UI */
+  --white: #fff;
+  --border: #D1D5DB;
+  --bg-light: #F0FDFA;
+  
+  /* Colors - Footer */
+  --footer-link: #5EEAD4;
+  --footer-muted: #A8A29E;
+  
+  /* Layout */
+  --cta-bar-h: 68px;
+  
+  /* Shadows */
+  --shadow: 0 1px 3px 0 rgba(31, 107, 107, 0.12);
+  --shadow-md: 0 4px 6px -1px rgba(31, 107, 107, 0.12);
+  --shadow-lg: 0 10px 15px -3px rgba(31, 107, 107, 0.15);
+}
