@@ -73,7 +73,7 @@ export function Reviews() {
       <div className={styles.container}>
         <h2 className={styles.title}>Lo que dicen los pacientes</h2>
         <p className={styles.subtitle}>
-          Citas de ejemplo (ficticias) para mostrar el formato de la sección.
+          Lo que comentan pacientes de la clínica en Google.
         </p>
       </div>
       <div className={styles.slider}>
