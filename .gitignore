@@ -2,3 +2,14 @@
 deploy-payload.json
 mcp-deploy-args.json
 *.log
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+*.local
+
+# Old static site (replaced by React + Vite)
+old-static/
