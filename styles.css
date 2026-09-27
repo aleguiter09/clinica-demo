@@ -2,17 +2,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap");
 
 :root {
-  --brand: #0D9488;
-  --brand-dark: #0F766E;
-  --brand-soft: #CCFBF1;
-  --accent: #14B8A6;
-  --accent-hover: #0D9488;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+
+  --brand: #1F6B6B;
+  --brand-dark: #164F4F;
+  --brand-soft: #E6F2F2;
+  --accent: #0E7C8B;
+  --accent-hover: #0C6A77;
   --text-dark: #1C1917;
   --text-medium: #44403C;
   --text-muted: #57534E;
-  --white: #fff;
+  --white: #FFFFFF;
   --border: #D1D5DB;
   --bg-light: #F0FDFA;
+  --footer-link: #5EEAD4;
+  --footer-muted: #A8A29E;
 
   --primary: var(--brand);
   --primary-dark: var(--brand-dark);
@@ -22,9 +32,23 @@
   --header-h: 60px;
   --cta-bar-h: 68px;
 
-  --shadow: 0 1px 3px 0 rgba(13, 148, 136, 0.12);
-  --shadow-md: 0 4px 6px -1px rgba(13, 148, 136, 0.12);
-  --shadow-lg: 0 10px 15px -3px rgba(13, 148, 136, 0.15);
+  --shadow: 0 1px 3px 0 rgba(31, 107, 107, 0.12);
+  --shadow-md: 0 4px 6px -1px rgba(31, 107, 107, 0.12);
+  --shadow-lg: 0 10px 15px -3px rgba(31, 107, 107, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 * {
@@ -121,8 +145,8 @@ body {
 .hero {
   background: linear-gradient(145deg, var(--brand-dark) 0%, var(--brand) 55%, var(--accent) 100%);
   color: var(--white);
-  margin-top: 60px;
-  padding: 56px 20px 60px;
+  margin-top: var(--header-h);
+  padding: 64px 20px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -317,7 +341,7 @@ body {
 }
 
 section {
-  padding: 56px 20px;
+  padding: 64px 20px;
 }
 
 section h2 {
@@ -334,7 +358,7 @@ section .section-subtitle {
   color: var(--text-medium);
   font-size: 17px;
   font-weight: 500;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -424,7 +448,7 @@ section .section-subtitle {
 .services-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 24px;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -460,7 +484,7 @@ section .section-subtitle {
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 24px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -468,7 +492,7 @@ section .section-subtitle {
 .pricing-card {
   background: var(--white);
   border-radius: 16px;
-  padding: 32px 28px;
+  padding: 32px;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   border: 2px solid var(--border);
@@ -534,7 +558,7 @@ section .section-subtitle {
 .team-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 32px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -543,7 +567,7 @@ section .section-subtitle {
   background: linear-gradient(to bottom, #F8FAFC, var(--white));
   border: 2px solid #E2E8F0;
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 32px;
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: var(--shadow);
@@ -595,8 +619,8 @@ section .section-subtitle {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #DBEAFE;
-  color: #1E40AF;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
   font-size: 13px;
   font-weight: 600;
   padding: 6px 14px;
@@ -604,7 +628,7 @@ section .section-subtitle {
 }
 
 .reviews-section {
-  padding: 56px 0;
+  padding: 64px 0;
   background: var(--white);
   overflow: hidden;
 }
@@ -619,6 +643,10 @@ section .section-subtitle {
 
 .reviews-section .section-subtitle {
   margin-bottom: 36px;
+}
+
+.reviews-slider {
+  position: relative;
 }
 
 .reviews-track {
@@ -656,7 +684,7 @@ section .section-subtitle {
   max-width: 520px;
   background: var(--brand-soft);
   border-radius: 16px;
-  padding: 32px 28px;
+  padding: 32px;
   box-shadow: var(--shadow-md);
   border: 2px solid var(--border);
   scroll-snap-align: center;
@@ -713,30 +741,80 @@ section .section-subtitle {
 .reviews-dots {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 4px;
   padding: 12px 16px 0;
 }
 
 .reviews-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--border);
+  min-width: 44px;
+  min-height: 44px;
+  background: transparent;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.reviews-dot:hover {
+.reviews-dot::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: all 0.3s ease;
+}
+
+.reviews-dot:hover::after {
   background: var(--accent);
   opacity: 0.7;
 }
 
-.reviews-dot.active {
-  background: var(--brand);
-  width: 32px;
+.reviews-dot.active::after {
+  width: 28px;
   border-radius: 5px;
+  background: var(--brand);
+}
+
+.reviews-prev,
+.reviews-next {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .reviews-prev,
+  .reviews-next {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    color: var(--brand-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .reviews-prev:hover,
+  .reviews-next:hover {
+    border-color: var(--brand);
+  }
+
+  .reviews-prev {
+    left: 20px;
+  }
+
+  .reviews-next {
+    right: 20px;
+  }
 }
 
 .faq-list {
@@ -744,7 +822,7 @@ section .section-subtitle {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .faq-item {
@@ -914,12 +992,13 @@ footer p {
 
 footer .demo-caption {
   font-size: 13px;
-  opacity: 0.6;
+  color: var(--footer-muted);
+  opacity: 1;
   margin-top: 16px;
 }
 
 footer a {
-  color: var(--accent);
+  color: var(--footer-link);
   text-decoration: none;
   font-weight: 600;
 }
@@ -954,13 +1033,16 @@ footer a:hover {
 
 @media (min-width: 768px) {
   section {
-    padding: 72px 24px;
+    padding: 96px 24px;
+  }
+
+  .trust-section {
+    padding: 64px 24px;
   }
 
   .hero {
-    margin-top: 60px;
-    padding-top: 72px;
-    padding-bottom: 72px;
+    margin-top: var(--header-h);
+    padding: 96px 24px;
   }
 
   .hero h1 {

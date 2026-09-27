@@ -189,9 +189,19 @@
   <section class="reviews-section" id="opiniones">
     <div class="container">
       <h2>Lo que dicen los pacientes</h2>
-      <p class="section-subtitle">Citas de ejemplo (ficticias) para mostrar el formato de la sección.</p>
+      <p class="section-subtitle">Lo que comentan pacientes de la clínica en Google.</p>
     </div>
     <div class="reviews-slider">
+      <button class="reviews-prev" id="reviews-prev" type="button" aria-label="Opinión anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="reviews-next" id="reviews-next" type="button" aria-label="Opinión siguiente">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
       <div class="reviews-track" id="reviews-track">
         <article class="review-card">
           <div class="review-stars" aria-label="Valoración 5 de 5">★★★★★</div>
@@ -340,10 +350,10 @@
   </section>
 
   <footer>
-    <p><strong>Clínica de Fisioterapia</strong></p>
-    <p>Chamberí · Madrid</p>
+    <p><strong>Clínica de Fisioterapia Chamberí</strong></p>
+    <p>Calle de Fuencarral 98 · 28004 Madrid</p>
     <p><a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="tel:+34600000000">600 000 000</a> · <a href="mailto:info@clinicademo.es">info@clinicademo.es</a></p>
-    <p class="demo-caption">Demo · landing genérica para cold outreach</p>
+    <p class="demo-caption">© 2026 Clínica de Fisioterapia Chamberí. Todos los derechos reservados.</p>
   </footer>
 
   <div class="mobile-cta-bar" role="navigation" aria-label="Acciones rápidas">
@@ -365,19 +375,35 @@
     (function () {
       var track = document.getElementById("reviews-track");
       var dotsWrap = document.getElementById("reviews-dots");
+      var prevBtn = document.getElementById("reviews-prev");
+      var nextBtn = document.getElementById("reviews-next");
       if (!track || !dotsWrap) return;
+
       var cards = Array.prototype.slice.call(track.querySelectorAll(".review-card"));
+      var currentIndex = 0;
+
+      function scrollToCard(index) {
+        if (index < 0 || index >= cards.length) return;
+        currentIndex = index;
+        var card = cards[index];
+        var targetScrollLeft = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+        track.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+      }
+
       cards.forEach(function (_, i) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "reviews-dot" + (i === 0 ? " active" : "");
         btn.setAttribute("aria-label", "Opinión " + (i + 1));
+        if (i === 0) btn.setAttribute("aria-current", "true");
         btn.addEventListener("click", function () {
-          cards[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+          scrollToCard(i);
         });
         dotsWrap.appendChild(btn);
       });
+
       var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".reviews-dot"));
+
       function updateDots() {
         var mid = track.scrollLeft + track.clientWidth / 2;
         var best = 0;
@@ -387,9 +413,33 @@
           var d = Math.abs(c - mid);
           if (d < bestDist) { bestDist = d; best = i; }
         });
-        dots.forEach(function (d, i) { d.classList.toggle("active", i === best); });
+        currentIndex = best;
+        dots.forEach(function (d, i) {
+          var isActive = i === best;
+          d.classList.toggle("active", isActive);
+          if (isActive) {
+            d.setAttribute("aria-current", "true");
+          } else {
+            d.removeAttribute("aria-current");
+          }
+        });
       }
+
       track.addEventListener("scroll", updateDots, { passive: true });
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          var newIndex = Math.max(0, currentIndex - 1);
+          scrollToCard(newIndex);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          var newIndex = Math.min(cards.length - 1, currentIndex + 1);
+          scrollToCard(newIndex);
+        });
+      }
     })();
   </script>
 </body>

@@ -2,7 +2,7 @@
 
 Generic cold-outreach demo site for a physiotherapy clinic in Chamberí, Madrid.
 
-**Live site:** https://clinica-fisio-demo.vercel.app/
+**Live site:** https://clinica-fisio-demo-rho.vercel.app/
 
 ## Stack
 
